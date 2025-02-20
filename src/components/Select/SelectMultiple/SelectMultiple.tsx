@@ -1,6 +1,9 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 import {Option} from "../types/SelectTypes.ts";
 import styles from '../styles.module.scss'
+import clear from "../../../assets/clear.svg";
+import selectTick from "../../../assets/selectTick.svg";
+import check from "../../../assets/check.svg";
 
 export interface ISelectMultiple {
   value: Option[];
@@ -8,6 +11,7 @@ export interface ISelectMultiple {
   options: Option[];
 }
 export const SelectMultiple: FC<ISelectMultiple> = ({options, value, onChange}) => {
+  const [open, setOpen] = useState<boolean>(false)
 
   const handleClick = (option: Option) => {
     let hasOptionInValue = value.find(item => item.id === option.id);
@@ -19,18 +23,35 @@ export const SelectMultiple: FC<ISelectMultiple> = ({options, value, onChange}) 
   }
 
   return (
-    <div className={styles.selectContainer}>
-      <details>
-        <summary>{value.length ? value.map((option) => <span className={styles.chip}>{option.value}</span>) : 'Select some'}</summary>
-        {options.map((option) => {
-          return (
+    <div>
+      <div className={styles.selectInputMultiple} onClick={() => setOpen(prev => !prev)}>
+        {value.length ? (
+          value.map((option) => (
+            <div className={styles.chipWrap}>
+              <span className={styles.chip}>{option.value}</span>
+            </div>
+          ))
+        ) : (
             <>
-              <p className={value.find(item => item.id === option.id) ? styles.selected : styles.option} key={option.id} onClick={() => handleClick(option)}>{option.value}</p>
+              <span>Select some</span>
+              {/*<img className={styles.tickIcon} src={selectTick}/>*/}
             </>
-        )
-        })}
+          )
+        }
+        <img className={styles.tickIcon} src={selectTick}/>
+      </div>
 
-      </details>
+      {open && (
+        <div>
+          {options.map((option) => {
+            return <div className={value.find(item => item.id === option.id) ? styles.selected : styles.option}
+                        onClick={() => handleClick(option)}>
+              <p key={option.id}>{option.value}</p>
+              {value.find(item => item.id === option.id) && (<img className={styles.checkIcon} src={check}/>)}
+            </div>
+          })}
+        </div>
+      )}
     </div>
   );
 };
