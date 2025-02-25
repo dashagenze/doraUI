@@ -1,9 +1,10 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import {Option} from "../types/SelectTypes.ts";
 import styles from "../styles.module.scss";
-import check from '../../../assets/check.svg'
-import selectTick from '../../../assets/selectTick.svg'
-import clear from '../../../assets/clear.svg'
+import SelectTick from "../../../assets/selectTick.svg?react";
+import CheckIcon from "../../../assets/check.svg?react";
+import Clear from '../../../assets/clear.svg?react'
+import {Dropdown} from "../Dropdown/Dropdown.tsx";
 
 export interface ISelectSingle {
   value: Option | null;
@@ -11,7 +12,6 @@ export interface ISelectSingle {
   options: Option[];
 }
 export const SelectSingle: FC<ISelectSingle> = ({value, options, onChange}) => {
-  const [open, setOpen] = useState<boolean>(false)
 
   const clearValue = () => {
     onChange(null)
@@ -26,33 +26,31 @@ export const SelectSingle: FC<ISelectSingle> = ({value, options, onChange}) => {
   }
 
   return (
-    <div>
-      <div className={styles.selectInput} onClick={() => setOpen(prev => !prev)}>
-        {value ? (
-          <>
-            <span className={styles.chip}>{value.value}</span>
-            <img className={styles.clearIcon} src={clear} onClick={clearValue}/>
-          </>
-        ) : (
-          <>
-            <span>Select one</span>
-            <img className={styles.tickIcon} src={selectTick}/>
-          </>
+    <Dropdown
+      switcher={
+        <div className={styles.selectInput}>
+          {value ? (
+            <>
+              <span className={styles.chip}>{value.value}</span>
+              <Clear className={styles.clearIcon} onClick={clearValue}/>
+            </>
+          ) : (
+            <>
+              <span>Select one</span>
+              <SelectTick className={styles.tickIcon}/>
+            </>
           )
-        }
-      </div>
-
-      {open && (
-        <div>
-          {options.map((option) => {
-            return <div className={value?.id === option.id ? styles.selected : styles.option} onClick={() => handleClick(option)}>
-              <p key={option.id}>{option.value}</p>
-              {value?.id === option.id && (<img className={styles.checkIcon} src={check}/>)}
-            </div>
-          })}
+          }
         </div>
-      )}
-    </div>
+      }>
+      {options.map((option) => {
+        return <div className={value?.id === option.id ? styles.selected : styles.option}
+                    onClick={() => handleClick(option)}>
+          <p key={option.id}>{option.value}</p>
+          {value?.id === option.id && <CheckIcon className={styles.checkIcon}/>}
+        </div>
+      })}
+    </Dropdown>
   )
 };
 

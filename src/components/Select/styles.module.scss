@@ -1,29 +1,19 @@
 .selectInput {
   display: flex;
   justify-content: space-between;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  height: fit-content;
-  padding: 10px;
-  cursor: pointer;
-  background-color: white;
-}
-.selectInput:focus {
-  outline-color: rebeccapurple;
-}
-.selectInputMultiple {
-  @extend .selectInput;
-  //justify-content: left;
 }
 
 .checkIcon {
   width: 20px;
+  height: 20px;
 }
 .tickIcon {
   width: 20px;
+  height: 20px;
 }
 .clearIcon {
   width: 20px;
+  height: 20px;
 }
 .clearIcon:hover {
   filter: drop-shadow(5px 5px 5px darkgray);
@@ -63,4 +53,5 @@
 .chipWrap::marker {
   color: grey;
 }
+
 
