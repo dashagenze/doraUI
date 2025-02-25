@@ -1,13 +1,27 @@
-import {FC} from "react";
+import {FC, useMemo} from "react";
 import {Option} from "../types/SelectTypes.ts";
 import styles from '../styles.module.scss'
+import SelectTick from "../../../assets/selectTick.svg?react";
+import CheckIcon from "../../../assets/check.svg?react";
+import {Dropdown} from "../Dropdown/Dropdown.tsx";
 
 export interface ISelectMultiple {
   value: Option[];
   onChange: (value: Option[]) => void;
   options: Option[];
 }
+
+const createValueMap = (value: Option[]) => {
+  const result: {[id: string] : string} = {}
+  value.forEach((option) => {
+    result[option.id] = option.value;
+  });
+  return result;
+}
+
 export const SelectMultiple: FC<ISelectMultiple> = ({options, value, onChange}) => {
+
+  const valueMap = useMemo(() => createValueMap(value), [value])
 
   const handleClick = (option: Option) => {
     let hasOptionInValue = value.find(item => item.id === option.id);
@@ -19,18 +33,34 @@ export const SelectMultiple: FC<ISelectMultiple> = ({options, value, onChange}) 
   }
 
   return (
-    <div className={styles.selectContainer}>
-      <details>
-        <summary>{value.length ? value.map((option) => <span className={styles.chip}>{option.value}</span>) : 'Select some'}</summary>
-        {options.map((option) => {
-          return (
+    <Dropdown
+      switcher={
+        <div className={styles.selectInput}>
+          {value.length ? (
+            <div className={styles.chipWrap}>
+              {value.map((option) => (
+                <span className={styles.chip}>{option.value}</span>
+              ))}
+            </div>
+          ) : (
             <>
-              <p className={value.find(item => item.id === option.id) ? styles.selected : styles.option} key={option.id} onClick={() => handleClick(option)}>{option.value}</p>
+              <span>Select some</span>
             </>
-        )
+          )
+          }
+          <SelectTick className={styles.tickIcon}/>
+        </div>
+      }
+    >
+      <div aria-multiselectable>
+        {options.map((option) => {
+          return <div className={valueMap[option.id] ? styles.selected : styles.option}
+                      onClick={() => handleClick(option)}>
+            <p key={option.id}>{option.value}</p>
+            {valueMap[option.id] && <CheckIcon className={styles.checkIcon}/>}
+          </div>
         })}
-
-      </details>
-    </div>
+      </div>
+    </Dropdown>
   );
 };

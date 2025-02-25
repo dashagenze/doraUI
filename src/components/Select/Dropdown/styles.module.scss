@@ -1,0 +1,30 @@
+.dropdown {
+  width: 100%;
+  position: relative;
+}
+
+.dropdownPlacement {
+  position: relative;
+  width: 100%;
+  top: 10px;
+  left: 10px;
+}
+
+.background {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.switcher {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  height: fit-content;
+  padding: 10px;
+  cursor: pointer;
+  background-color: white;
+}
+
