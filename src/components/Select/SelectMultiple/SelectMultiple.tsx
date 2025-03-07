@@ -53,6 +53,8 @@ export const SelectMultiple: FC<ISelectMultiple> = ({ options, value, onChange }
         {options.map((option) => {
           return (
             <div
+              role={'option'}
+              key={option.id}
               className={valueMap[option.id] ? styles.selected : styles.option}
               onClick={() => handleClick(option)}>
               <p key={option.id}>{option.value}</p>
