@@ -7,15 +7,15 @@ import { Dropdown } from '../Dropdown.tsx';
 describe('Dropdown', () => {
   test('opens and closes info', () => {
     const { container, queryByText } = render(
-      <Dropdown switcher={<div>switcher</div>} children={<div>options</div>} />
+      <Dropdown switcher={<div>switcher</div>} children={<div>content</div>} />
     );
-    const select = container.firstChild?.firstChild as Element;
-    const options = queryByText('options');
+    const switcher = container.firstChild?.firstChild as Element;
+    const content = queryByText('content');
 
-    expect(queryByText('options')).not.toBeInTheDocument();
-    fireEvent.click(select);
+    expect(queryByText('content')).not.toBeInTheDocument();
+    fireEvent.click(switcher);
     waitFor(() => {
-      expect(options).toBeInTheDocument();
+      expect(content).toBeInTheDocument();
     });
   });
 });

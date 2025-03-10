@@ -1,5 +1,7 @@
 import { describe, expect, test, vi } from 'vitest';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, renderHook } from '@testing-library/react';
+import { useEffect, useState } from 'react';
+import { Option } from '../../types/SelectTypes.ts';
 
 import { SelectSingle } from '../SelectSingle.tsx';
 
@@ -14,6 +16,7 @@ describe(SelectSingle, () => {
     const { container, getAllByRole } = render(
       <SelectSingle value={null} onChange={handleChange} options={optionsMock} />
     );
+
     // expand select options
     fireEvent.click(container.firstChild?.firstChild as Element);
 
@@ -23,5 +26,17 @@ describe(SelectSingle, () => {
 
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveBeenCalledWith({ id: '1', value: 'Mister' });
+  });
+
+  test('handles the state change', () => {
+    const { result } = renderHook(() => {
+      const [value, setValue] = useState<Option | null>(null);
+      useEffect(() => {
+        setValue({ id: '1', value: 'Mister' });
+      }, []);
+      return value;
+    });
+
+    expect(result.current).toEqual({ id: '1', value: 'Mister' });
   });
 });
