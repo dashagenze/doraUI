@@ -1,7 +1,5 @@
 import { describe, expect, test, vi } from 'vitest';
-import { fireEvent, render, renderHook } from '@testing-library/react';
-import { useEffect, useState } from 'react';
-import { Option } from '../../types/SelectTypes.ts';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { SelectSingle } from '../SelectSingle.tsx';
 
@@ -9,10 +7,11 @@ const optionsMock = [
   { id: '1', value: 'Mister' },
   { id: '3', value: 'Laura' }
 ];
-const handleChange = vi.fn();
 
 describe(SelectSingle, () => {
   test('chooses and sets one option', () => {
+    const handleChange = vi.fn();
+
     const { container, getAllByRole } = render(
       <SelectSingle value={null} onChange={handleChange} options={optionsMock} />
     );
@@ -28,15 +27,16 @@ describe(SelectSingle, () => {
     expect(handleChange).toHaveBeenCalledWith({ id: '1', value: 'Mister' });
   });
 
-  test('handles the state change', () => {
-    const { result } = renderHook(() => {
-      const [value, setValue] = useState<Option | null>(null);
-      useEffect(() => {
-        setValue({ id: '1', value: 'Mister' });
-      }, []);
-      return value;
-    });
+  test('displays selected values', () => {
+    render(
+      <SelectSingle value={{ id: '3', value: 'Laura' }} onChange={() => {}} options={optionsMock} />
+    );
+    // options not expanded, only selected value is displayed
+    expect(screen.getByText(/laura/i)).toBeInTheDocument();
+  });
 
-    expect(result.current).toEqual({ id: '1', value: 'Mister' });
+  test('displays placeholder when no values selected', () => {
+    render(<SelectSingle value={null} onChange={() => {}} options={optionsMock} />);
+    expect(screen.getByText(/select one/i)).toBeInTheDocument();
   });
 });

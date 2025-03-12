@@ -1,7 +1,5 @@
 import { describe, expect, test, vi } from 'vitest';
-import { fireEvent, render, renderHook } from '@testing-library/react';
-import { useEffect, useState } from 'react';
-import { Option } from '../../types/SelectTypes.ts';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { SelectMultiple } from '../SelectMultiple.tsx';
 
@@ -9,10 +7,10 @@ const optionsMock = [
   { id: '1', value: 'Mister' },
   { id: '3', value: 'Laura' }
 ];
-const handleChange = vi.fn();
 
 describe(SelectMultiple, () => {
   test('chooses multiple options', () => {
+    const handleChange = vi.fn();
     const { container, getAllByRole } = render(
       <SelectMultiple value={[]} onChange={handleChange} options={optionsMock} />
     );
@@ -22,25 +20,22 @@ describe(SelectMultiple, () => {
     const options = getAllByRole('option');
     // choose 2 options
     fireEvent.click(options[0]);
+    expect(handleChange).toBeCalledWith([{ id: '1', value: 'Mister' }]);
     fireEvent.click(options[1]);
+    expect(handleChange).toBeCalledWith([{ id: '3', value: 'Laura' }]);
+
     expect(handleChange).toHaveBeenCalledTimes(2);
   });
 
-  test('handles the state change', () => {
-    const { result } = renderHook(() => {
-      const [value, setValue] = useState<Option[] | null>([]);
-      useEffect(() => {
-        setValue([
-          { id: '1', value: 'Mister' },
-          { id: '3', value: 'Laura' }
-        ]);
-      }, []);
-      return value;
-    });
+  test('displays selected values', () => {
+    render(<SelectMultiple value={optionsMock} onChange={() => {}} options={optionsMock} />);
+    // options not expanded, only selected values are displayed
+    expect(screen.getByText(/laura/i)).toBeInTheDocument();
+    expect(screen.getByText(/mister/i)).toBeInTheDocument();
+  });
 
-    expect(result.current).toEqual([
-      { id: '1', value: 'Mister' },
-      { id: '3', value: 'Laura' }
-    ]);
+  test('displays placeholder when no values selected', () => {
+    render(<SelectMultiple value={[]} onChange={() => {}} options={optionsMock} />);
+    expect(screen.getByText(/select some/i)).toBeInTheDocument();
   });
 });
