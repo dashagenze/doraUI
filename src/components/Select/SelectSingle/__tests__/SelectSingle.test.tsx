@@ -3,17 +3,15 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import { SelectSingle } from '../SelectSingle.tsx';
 
-const optionsMock = [
-  { id: '1', value: 'Mister' },
-  { id: '3', value: 'Laura' }
-];
+const option1 = { id: '1', value: 'Mister' };
+const option2 = { id: '3', value: 'Laura' };
 
 describe(SelectSingle, () => {
   test('chooses and sets one option', () => {
     const handleChange = vi.fn();
 
     const { container, getAllByRole } = render(
-      <SelectSingle value={null} onChange={handleChange} options={optionsMock} />
+      <SelectSingle value={null} onChange={handleChange} options={[option1, option2]} />
     );
 
     // expand select options
@@ -24,19 +22,17 @@ describe(SelectSingle, () => {
     fireEvent.click(options[0]);
 
     expect(handleChange).toHaveBeenCalledTimes(1);
-    expect(handleChange).toHaveBeenCalledWith({ id: '1', value: 'Mister' });
+    expect(handleChange).toHaveBeenCalledWith(option1);
   });
 
   test('displays selected values', () => {
-    render(
-      <SelectSingle value={{ id: '3', value: 'Laura' }} onChange={() => {}} options={optionsMock} />
-    );
+    render(<SelectSingle value={option1} onChange={() => {}} options={[option1, option2]} />);
     // options not expanded, only selected value is displayed
-    expect(screen.getByText(/laura/i)).toBeInTheDocument();
+    expect(screen.getByText(option1.value)).toBeInTheDocument();
   });
 
   test('displays placeholder when no values selected', () => {
-    render(<SelectSingle value={null} onChange={() => {}} options={optionsMock} />);
+    render(<SelectSingle value={null} onChange={() => {}} options={[option1, option2]} />);
     expect(screen.getByText(/select one/i)).toBeInTheDocument();
   });
 });
