@@ -1,0 +1,50 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Fix vulnerabilities
+      if: failure()
+      run: npm audit fix
+
+    # - name: Create a build directory
+    #   run: npm run build --if-present
+
+    - name: Run tests
+      run: npm test
+
+    - name: Run linter
+      run: npm run lint
+    
+    - name: Echo file changes
+      id: echo_file_changes
+      run: |
+        echo Added files: ${{ steps.get_file_changes.outputs.files_added }}
+        echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }}
+        echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }}
+
