@@ -17,6 +17,7 @@ import stylistic from '@stylistic/eslint-plugin';
 import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
 import globals from 'globals';
+import eslintReact from '@eslint-react/eslint-plugin';
 import js from '@eslint/js';
 import unicorn from 'eslint-plugin-unicorn';
 import nestedif from 'eslint-plugin-nested-if';
@@ -24,7 +25,7 @@ import reactRefreshPlugin from 'eslint-plugin-react-refresh';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import ts from 'typescript-eslint';
 
-const config = ts.config(js.configs.recommended, ...ts.configs.recommended, {
+const config = ts.config(js.configs.recommended, eslintReact.configs.recommended, ...ts.configs.recommended, {
   plugins: {
     react,
     reactRefreshPlugin,

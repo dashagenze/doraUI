@@ -38,7 +38,9 @@ export const SelectMultiple: FC<ISelectMultiple> = ({ options, value, onChange }
           {value.length ? (
             <div className={styles.chipWrap}>
               {value.map((option) => (
-                <span className={styles.chip}>{option.value}</span>
+                <span key={option.id} className={styles.chip}>
+                  {option.value}
+                </span>
               ))}
             </div>
           ) : (
