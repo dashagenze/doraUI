@@ -32,8 +32,8 @@ jobs:
       if: failure()
       run: npm audit fix
 
-    - name: Create a build directory
-      run: npm run build --if-present
+    # - name: Create a build directory
+    #   run: npm run build --if-present
 
     - name: Run tests
       run: npm test
