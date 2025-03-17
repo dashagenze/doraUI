@@ -1,7 +1,7 @@
 import { Select } from './components/Select/Select.tsx';
 import { useState } from 'react';
 import { Option } from './components/Select/types/SelectTypes.ts';
-import { options } from './components/Select/mocks/options.ts';
+import { options } from './components/Select/__mocks__/options.ts';
 
 function App() {
   const [value, setValue] = useState<Option | null>(null);

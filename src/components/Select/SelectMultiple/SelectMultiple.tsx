@@ -3,7 +3,7 @@ import { Option } from '../types/SelectTypes.ts';
 import styles from '../styles.module.scss';
 import SelectTick from '../../../assets/selectTick.svg?react';
 import CheckIcon from '../../../assets/check.svg?react';
-import { Dropdown } from '../Dropdown/Dropdown.tsx';
+import { Dropdown } from '../../Dropdown/Dropdown.tsx';
 
 export interface ISelectMultiple {
   value: Option[];
