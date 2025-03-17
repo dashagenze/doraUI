@@ -20,5 +20,5 @@ export const Dropdown: StoryFn<StoryProps> = (args) => {
 };
 
 Dropdown.args = {
-  switcher: <button>Me switcher!!</button>
+  switcher: <button type={'button'}>Me switcher!!</button>
 };
