@@ -18,7 +18,6 @@ export const Dropdown: StoryFn<StoryProps> = (args) => {
     </DropdownComponent>
   );
 };
-
 Dropdown.args = {
   switcher: <button type={'button'}>Me switcher!!</button>
 };

@@ -2,53 +2,29 @@ import { Select as SelectComponent } from '../Select.tsx';
 import { ComponentProps, useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Option } from '../types/SelectTypes.ts';
+import { createOptions } from '../__mocks__/createOptions.ts';
 
-type StoryProps = ComponentProps<typeof SelectComponent> & {
-  numberOfOptions: number;
-};
+type StoryProps = ComponentProps<typeof SelectComponent>;
 
 const meta: Meta<StoryProps> = {
   component: SelectComponent,
   tags: ['autodocs'],
-  title: 'Components/Select',
-  argTypes: {
-    numberOfOptions: {
-      control: 'number'
-    }
-  }
+  title: 'Components/Select'
 };
 export default meta;
 
-export const Multiple: StoryFn<StoryProps> = ({ numberOfOptions = 5, ...args }) => {
-  const [arrValue, setArrValue] = useState<Option[]>([]);
-  return (
-    <SelectComponent
-      {...args}
-      value={arrValue}
-      onChange={setArrValue}
-      isMultiple={true}
-      options={createOptions(numberOfOptions)}
-    />
-  );
+export const Multiple: StoryFn<StoryProps> = (args) => {
+  const [value, setValue] = useState<Option[]>([]);
+  return <SelectComponent {...args} value={value} onChange={setValue} isMultiple={true} />;
+};
+Multiple.args = {
+  options: createOptions(25)
 };
 
-export const Single: StoryFn<StoryProps> = ({ numberOfOptions = 5, ...args }) => {
+export const Single: StoryFn<StoryProps> = (args) => {
   const [value, setValue] = useState<Option | null>(null);
-  return (
-    <SelectComponent
-      {...args}
-      value={value}
-      onChange={setValue}
-      isMultiple={false}
-      options={createOptions(numberOfOptions)}
-    />
-  );
+  return <SelectComponent {...args} value={value} onChange={setValue} isMultiple={false} />;
 };
-
-function createOptions(numberOfOptions: number) {
-  return Array(numberOfOptions)
-    .fill(null)
-    .map((_, index) => {
-      return { id: `${index}`, value: `Option ${index + 1}` };
-    });
-}
+Single.args = {
+  options: createOptions(25)
+};
