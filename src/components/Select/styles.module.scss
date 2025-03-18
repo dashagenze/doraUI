@@ -1,20 +1,30 @@
 .selectInput {
   display: flex;
   justify-content: space-between;
+
+  border: 1px solid #ddd;
+  border-radius: 8px 8px 0 0;
+  height: fit-content;
+  padding: 10px;
+  cursor: pointer;
+  background-color: white;
 }
 
 .checkIcon {
   width: 20px;
   height: 20px;
 }
+
 .tickIcon {
   width: 20px;
   height: 20px;
 }
+
 .clearIcon {
   width: 20px;
   height: 20px;
 }
+
 .clearIcon:hover {
   filter: drop-shadow(5px 5px 5px darkgray);
 }
@@ -24,16 +34,20 @@
   justify-content: space-between;
   cursor: pointer;
   background-color: whitesmoke;
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
   margin-top: -5px;
   padding: 7px;
+
   p {
     margin: 0;
   }
 }
+
 .option:hover {
   background-color: darkgray;
 }
+
 .selected {
   @extend .option;
   background-color: lightgray;
@@ -45,11 +59,13 @@
   padding: 3px;
   margin: 3px;
 }
+
 .chipWrap {
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
 }
+
 .chipWrap::marker {
   color: grey;
 }

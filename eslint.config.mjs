@@ -69,7 +69,7 @@ const config = ts.config(js.configs.recommended, eslintReact.configs.recommended
     }
   },
   files: ['**/*.ts', '**/*.tsx'],
-  ignores: ['node_modules/', 'dist/', 'vite-env.d.ts', 'vite.config.ts']
+  ignores: ['node_modules/', 'dist/', 'vite-env.d.ts', '.storybook/**', 'vite.config.ts']
 });
 
 export default config;

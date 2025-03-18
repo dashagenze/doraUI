@@ -15,7 +15,7 @@ describe(SelectSingle, () => {
     );
 
     // expand select options
-    fireEvent.click(container.firstChild?.firstChild as Element);
+    fireEvent.click(container.firstChild?.firstChild?.firstChild as Element);
 
     const options = getAllByRole('option');
     // choose an option

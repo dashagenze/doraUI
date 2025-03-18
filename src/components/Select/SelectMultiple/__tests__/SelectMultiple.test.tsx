@@ -13,7 +13,7 @@ describe(SelectMultiple, () => {
       <SelectMultiple value={[]} onChange={handleChange} options={[option1, option2]} />
     );
     // expand select options
-    fireEvent.click(container.firstChild?.firstChild as Element);
+    fireEvent.click(container.firstChild?.firstChild?.firstChild as Element);
 
     const options = getAllByRole('option');
     // choose 2 options
