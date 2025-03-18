@@ -5,6 +5,9 @@ import { Option } from '../types/SelectTypes.ts';
  * @param numberOfOptions сколько опций нужно создать
  */
 export const createOptions = (numberOfOptions: number = 6): Option[] => {
+  if (!numberOfOptions) {
+    return [];
+  }
   return Array(numberOfOptions)
     .fill(null)
     .map((_, index) => {

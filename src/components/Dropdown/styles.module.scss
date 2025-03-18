@@ -9,6 +9,13 @@
 .dropdownContent {
   position: relative;
   min-width: 100px;
+  max-height: 250px;
+
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: lightgray whitesmoke;
+
   padding: 10px;
   border-radius: 5px;
   border-color: dimgrey;
