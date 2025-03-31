@@ -1,0 +1,48 @@
+import { Tag } from '../Tag.tsx';
+import { FC } from 'react';
+import Delete from '../../../assets/clear.svg?react';
+import '../styles.scss';
+import { Avatar } from '../../Avatar/Avatar.tsx';
+import { Size } from '../../../shared/types/size.ts';
+
+interface IUserTag {
+  /** Ссылка на картинку аватара */
+  avatar: string;
+  /** Размер аватара */
+  size?: Size;
+  /** Имя пользователя тега */
+  name: string;
+}
+
+interface IUserTagWithDelete extends IUserTag {
+  /** Доступно для удаления или нет */
+  canDelete: true;
+  /** Функция вызванная при удалении */
+  onDelete: () => void;
+}
+
+interface IUserTagNoDelete extends IUserTag {
+  /** Доступно для удаления или нет */
+  canDelete?: false;
+  /** Функция вызванная при удалении */
+  onDelete?: never;
+}
+
+type IUserTagProps = IUserTagWithDelete | IUserTagNoDelete;
+
+export const UserTag: FC<IUserTagProps> = ({ avatar, size, name, canDelete, onDelete }) => {
+  return (
+    <Tag
+      size={size}
+      leftContent={<Avatar name={name} src={avatar} size={size} />}
+      content={name}
+      rightContent={
+        canDelete ? (
+          <div onClick={onDelete}>
+            <Delete className={'deleteIcon'} />
+          </div>
+        ) : null
+      }
+    />
+  );
+};

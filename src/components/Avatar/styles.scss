@@ -1,0 +1,35 @@
+.circle {
+  border-radius: 50%;
+}
+
+.square {
+  border-radius: 10px;
+}
+
+.small {
+  height: 20px;
+  width: 20px;
+}
+
+.middle {
+  height: 30px;
+  width: 30px;
+}
+
+.big {
+  height: 45px;
+  width: 45px;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  object-fit: cover;
+  object-position: center;
+
+  background-color: lightgrey;
+}
+
+
