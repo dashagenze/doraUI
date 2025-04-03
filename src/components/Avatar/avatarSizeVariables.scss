@@ -1,0 +1,9 @@
+$smallAvatar: 20px;
+$middleAvatar: 30px;
+$bigAvatar: 45px;
+
+:export {
+  smallAvatar: $smallAvatar;
+  middleAvatar: $middleAvatar;
+  bigAvatar: $bigAvatar;
+}

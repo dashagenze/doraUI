@@ -1,23 +1,18 @@
-import { UserTag } from './components/Tag/UserTag/UserTag.tsx';
-import { Avatar } from './components/Avatar/Avatar.tsx';
+import ReactIcon from './assets/react.svg?react';
 import { Tag } from './components/Tag/Tag.tsx';
 
 function App() {
   return (
-    <div style={{ width: '300px' }}>
-      <Tag content={'qqq'} size={'small'} />
-      <UserTag
-        size={'big'}
-        avatar={'https://placebear.com/300/300'}
-        name={'Jenny Costys'}
+    <div>
+      <Tag tagType={'user'} size={'big'} canDelete={true} onDelete={() => {}} name={'Cassie'} />
+      <Tag tagType={'user'} size={'big'} name={'Jenny'} avatar={'https://placebear.com/300/300'} />
+      <Tag
+        tagType={'default'}
+        size={'middle'}
         canDelete={true}
         onDelete={() => {}}
-      />
-
-      <Avatar
-        name={'Kyle'}
-        shape={'circle'}
-        src={'https://api.dicebear.com/9.x/dylan/svg?seed=Felix'}
+        text={'best text when tag is working'}
+        icon={<ReactIcon />}
       />
     </div>
   );

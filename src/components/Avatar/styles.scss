@@ -1,3 +1,5 @@
+@import "avatarSizeVariables";
+
 .circle {
   border-radius: 50%;
 }
@@ -6,19 +8,19 @@
   border-radius: 10px;
 }
 
-.small {
-  height: 20px;
-  width: 20px;
+.smallAvatar {
+  height: $smallAvatar;
+  width: $smallAvatar;
 }
 
-.middle {
-  height: 30px;
-  width: 30px;
+.middleAvatar {
+  height: $middleAvatar;
+  width: $middleAvatar;
 }
 
-.big {
-  height: 45px;
-  width: 45px;
+.bigAvatar {
+  height: $bigAvatar;
+  width: $bigAvatar;
 }
 
 .background {

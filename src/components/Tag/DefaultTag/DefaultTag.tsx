@@ -1,41 +1,40 @@
 import { BaseTag } from '../BaseTag/BaseTag.tsx';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import Delete from '../../../assets/clear.svg?react';
 import '../styles.scss';
-import { Avatar } from '../../Avatar/Avatar.tsx';
 import { Size } from '../../../shared/types/size.ts';
 
-interface IUserTag {
-  /** Ссылка на картинку аватара */
-  avatar?: string;
-  /** Размер тега и аватара */
+interface IDefaultTag {
+  /** Ссылка на иконку */
+  icon?: ReactNode;
+  /** Размер тега */
   size?: Size;
-  /** Имя пользователя тега */
-  name: string;
+  /** Текст тега */
+  text: string;
 }
 
-interface IUserTagWithDelete extends IUserTag {
+interface IDefaultTagWithDelete extends IDefaultTag {
   /** Доступно для удаления или нет */
   canDelete: true;
   /** Функция вызванная при удалении */
   onDelete: () => void;
 }
 
-interface IUserTagNoDelete extends IUserTag {
+interface IDefaultTagNoDelete extends IDefaultTag {
   /** Доступно для удаления или нет */
   canDelete?: false;
   /** Функция вызванная при удалении */
   onDelete?: never;
 }
 
-export type IUserTagProps = IUserTagWithDelete | IUserTagNoDelete;
+export type IDefaultTagProps = IDefaultTagWithDelete | IDefaultTagNoDelete;
 
-export const UserTag: FC<IUserTagProps> = ({ avatar, size, name, canDelete, onDelete }) => {
+export const DefaultTag: FC<IDefaultTagProps> = ({ icon, size, text, canDelete, onDelete }) => {
   return (
     <BaseTag
       size={size}
-      leftContent={<Avatar name={name} src={avatar} size={size} />}
-      content={name}
+      leftContent={icon ?? null}
+      content={text}
       rightContent={
         canDelete ? (
           <div onClick={onDelete}>

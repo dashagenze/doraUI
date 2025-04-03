@@ -1,30 +1,24 @@
-import { FC, ReactNode } from 'react';
-import { getRandomColor } from './utils/getRandomColor.ts';
-import { tagColors } from './tagColors.ts';
-import './styles.scss';
-import { Size } from '../../shared/types/size.ts';
-import classNames from 'classnames';
+import { FC } from 'react';
+import { IUserTagProps, UserTag } from './UserTag/UserTag.tsx';
+import { DefaultTag, IDefaultTagProps } from './DefaultTag/DefaultTag.tsx';
 
-interface ITagProps {
-  /** Элемент расположенный слева в теге */
-  leftContent?: ReactNode;
-  /** Элемент расположенный по центру в теге */
-  content: ReactNode;
-  /** Элемент расположенный справа в теге */
-  rightContent?: ReactNode;
-  /** Размер тега */
-  size?: Size;
-}
+type IUserTag = IUserTagProps & {
+  tagType: 'user';
+};
 
-export const Tag: FC<ITagProps> = ({ rightContent, content, leftContent, size }) => {
-  const tagStyles = classNames('box', {
-    [`${size}`]: true
-  });
-  return (
-    <div className={tagStyles} style={{ backgroundColor: getRandomColor(tagColors) }}>
-      <div>{leftContent}</div>
-      <div>{content}</div>
-      <div>{rightContent}</div>
-    </div>
-  );
+type IDefaultTag = IDefaultTagProps & {
+  tagType: 'default';
+};
+
+type ITagProps = IUserTag | IDefaultTag;
+
+export const Tag: FC<ITagProps> = (props) => {
+  switch (props.tagType) {
+    case 'user':
+      return <UserTag {...props} />;
+    case 'default':
+      return <DefaultTag {...props} />;
+    default:
+      return null;
+  }
 };

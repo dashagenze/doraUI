@@ -15,8 +15,12 @@ interface IAvatarProps {
 
 export const Avatar: FC<IAvatarProps> = ({ src, name, shape = 'circle', size = 'middle' }) => {
   return (
-    <div className={`background ${shape} ${size}`}>
-      {src ? <img src={src} alt={name} className={`${shape} ${size}`} /> : <span>{name[0]}</span>}
+    <div className={`background ${shape} ${size + 'Avatar'}`}>
+      {src ? (
+        <img src={src} alt={name} className={`${shape} ${size + 'Avatar'}`} />
+      ) : (
+        <span>{name[0]}</span>
+      )}
     </div>
   );
 };
