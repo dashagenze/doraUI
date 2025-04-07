@@ -1,0 +1,9 @@
+$small: 20px;
+$middle: 30px;
+$big: 45px;
+
+:export {
+  smallSize: $small;
+  middleSize: $middle;
+  bigSize: $big;
+}

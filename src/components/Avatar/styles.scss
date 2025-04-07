@@ -1,0 +1,37 @@
+@import "../../shared/sizeVariables";
+
+.circle {
+  border-radius: 50%;
+}
+
+.square {
+  border-radius: 24%;
+}
+
+.SMALLAvatar {
+  height: $small;
+  width: $small;
+}
+
+.MIDDLEAvatar {
+  height: $middle;
+  width: $middle;
+}
+
+.BIGAvatar {
+  height: $big;
+  width: $big;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  object-fit: cover;
+  object-position: center;
+
+  background-color: lightgrey;
+}
+
+
