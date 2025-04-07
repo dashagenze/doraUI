@@ -1,26 +1,26 @@
-@import "avatarSizeVariables";
+@import "../../shared/sizeVariables";
 
 .circle {
   border-radius: 50%;
 }
 
 .square {
-  border-radius: 10px;
+  border-radius: 24%;
 }
 
-.smallAvatar {
-  height: $smallAvatar;
-  width: $smallAvatar;
+.SMALLAvatar {
+  height: $small;
+  width: $small;
 }
 
-.middleAvatar {
-  height: $middleAvatar;
-  width: $middleAvatar;
+.MIDDLEAvatar {
+  height: $middle;
+  width: $middle;
 }
 
-.bigAvatar {
-  height: $bigAvatar;
-  width: $bigAvatar;
+.BIGAvatar {
+  height: $big;
+  width: $big;
 }
 
 .background {

@@ -3,6 +3,7 @@ import { FC, ReactNode } from 'react';
 import Delete from '../../../assets/clear.svg?react';
 import '../styles.scss';
 import { Size } from '../../../shared/types/size.ts';
+import { Icon } from '../../Icon/Icon.tsx';
 
 interface IDefaultTag {
   /** Ссылка на иконку */
@@ -33,7 +34,7 @@ export const DefaultTag: FC<IDefaultTagProps> = ({ icon, size, text, canDelete, 
   return (
     <BaseTag
       size={size}
-      leftContent={icon ?? null}
+      leftContent={<Icon component={icon} size={size} />}
       content={text}
       rightContent={
         canDelete ? (

@@ -1,1 +1,5 @@
-export type Size = 'big' | 'small' | 'middle';
+export const enum Size {
+  BIG = 'BIG',
+  MIDDLE = 'MIDDLE',
+  SMALL = 'SMALL'
+}
