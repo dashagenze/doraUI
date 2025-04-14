@@ -8,24 +8,22 @@
   height: fit-content;
   padding: 6px;
   border-radius: 5px;
-
-  border: 1px solid red;
 }
 
 .BIG {
-  font-size: 20px;
+  font-size: var(--bigFont);
 }
 
 .MIDDLE {
-  font-size: 16px;
+  font-size: var(--middleFont);
 }
 
 .SMALL {
-  font-size: 14px;
+  font-size: var(--smallFont);
 }
 
 .deleteIcon {
   cursor: pointer;
-  width: 15px;
-  height: 15px;
+  //width: 15px;
+  //height: 15px;
 }

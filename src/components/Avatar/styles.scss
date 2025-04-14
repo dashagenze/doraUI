@@ -1,10 +1,12 @@
 @import "../../shared/sizeVariables";
 
-.circle {
+$backgroundColor: lightgrey;
+
+.CIRCLE {
   border-radius: 50%;
 }
 
-.square {
+.SQUARE {
   border-radius: 24%;
 }
 
@@ -31,7 +33,7 @@
   object-fit: cover;
   object-position: center;
 
-  background-color: lightgrey;
+  background-color: $backgroundColor;
 }
 
 

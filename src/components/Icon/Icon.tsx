@@ -4,9 +4,10 @@ import { Size } from '../../shared/types/size.ts';
 
 interface IIconProps {
   size?: Size;
-  component: ReactNode;
+  children: ReactNode;
+  className?: string;
 }
 
-export const Icon: FC<IIconProps> = ({ component, size = 'middle' }) => {
-  return <div className={`${size}Icon`}>{component}</div>;
+export const Icon: FC<IIconProps> = ({ children, size = Size.MIDDLE, className }) => {
+  return <div className={`${size}Icon ${className}`}>{children}</div>;
 };

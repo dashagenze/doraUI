@@ -1,12 +1,14 @@
-import ReactIcon from './assets/react.svg?react';
+import ReactIcon from './components/Icon/assets/react.svg?react';
 import { Tag } from './components/Tag/Tag.tsx';
 import { TagType } from './components/Tag/utils/tagTypes.ts';
 import { Size } from './shared/types/size.ts';
+import './App.scss';
 
 function App() {
   return (
     <div>
       <Tag
+        color={'#1a1'}
         type={TagType.USER}
         size={Size.BIG}
         canDelete={true}

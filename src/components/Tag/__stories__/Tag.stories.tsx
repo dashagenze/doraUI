@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 import { Tag as TagComponent } from '../Tag.tsx';
 import { Meta, StoryFn } from '@storybook/react';
-import ReactIcon from '../../../assets/react.svg?react';
+import ReactIcon from '../../Icon/assets/react.svg?react';
 import { TagType } from '../utils/tagTypes.ts';
 import { Size } from '../../../shared/types/size.ts';
 

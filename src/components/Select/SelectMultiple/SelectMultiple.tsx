@@ -1,8 +1,8 @@
 import { FC, useMemo } from 'react';
 import { Option } from '../types/SelectTypes.ts';
 import styles from '../styles.module.scss';
-import SelectTick from '../../../assets/selectTick.svg?react';
-import CheckIcon from '../../../assets/check.svg?react';
+import SelectTick from '../../Icon/assets/selectTick.svg?react';
+import CheckIcon from '../../Icon/assets/check.svg?react';
 import { Dropdown } from '../../Dropdown/Dropdown.tsx';
 
 export interface ISelectMultiple {
