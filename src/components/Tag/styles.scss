@@ -1,0 +1,29 @@
+.box {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+  align-items: center;
+
+  width: fit-content;
+  height: fit-content;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.BIG {
+  font-size: var(--bigFont);
+}
+
+.MIDDLE {
+  font-size: var(--middleFont);
+}
+
+.SMALL {
+  font-size: var(--smallFont);
+}
+
+.deleteIcon {
+  cursor: pointer;
+  //width: 15px;
+  //height: 15px;
+}

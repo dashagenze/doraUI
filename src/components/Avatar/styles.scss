@@ -1,0 +1,39 @@
+@import "../../shared/sizeVariables";
+
+$backgroundColor: lightgrey;
+
+.CIRCLE {
+  border-radius: 50%;
+}
+
+.SQUARE {
+  border-radius: 24%;
+}
+
+.SMALLAvatar {
+  height: $small;
+  width: $small;
+}
+
+.MIDDLEAvatar {
+  height: $middle;
+  width: $middle;
+}
+
+.BIGAvatar {
+  height: $big;
+  width: $big;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  object-fit: cover;
+  object-position: center;
+
+  background-color: $backgroundColor;
+}
+
+
